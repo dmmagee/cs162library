@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Library {
     private String address;
-    List<Object> books;
+    private List<Book> books;
 
     private Library(String address) {
         this.address = address;
@@ -20,12 +20,14 @@ public class Library {
         System.out.println(address);
     }
 
-    private void addBook(Object book) {
+    private void addBook(Book book) {
         books.add(book);
     }
 
     private void borrowBook(String bookName) {
+
         for (int i = 0; i <= books.size(); i++) {
+            System.out.println(books.indexOf(i));
             if (books.contains(bookName)) {
                 System.out.println("You successfully borrowed " + bookName);
             } else {
@@ -65,20 +67,19 @@ public class Library {
         firstLibrary.borrowBook("The Lord of the Rings");
         secondLibrary.borrowBook("The Lord of the Rings");
         System.out.println();
-//// Print the titles of all available books from both libraries
-//        System.out.println("Books available in the first library:");
-//        firstLibrary.printAvailableBooks();
-//        System.out.println();
-//        System.out.println("Books available in the second library:");
-//        secondLibrary.printAvailableBooks();
-//        System.out.println();
-//// Return The Lords of the Rings to the first library
-//        System.out.println("Returning The Lord of the Rings:");
-//        firstLibrary.returnBook("The Lord of the Rings");
-//        System.out.println();
-//
-//// Print the titles of available from the first library
-//        System.out.println("Books available in the first library:");
-//        firstLibrary.printAvailableBooks();
+// Print the titles of all available books from both libraries
+        System.out.println("Books available in the first library:");
+        firstLibrary.printAvailableBooks();
+        System.out.println();
+        System.out.println("Books available in the second library:");
+        secondLibrary.printAvailableBooks();
+        System.out.println();
+// Return The Lords of the Rings to the first library
+        System.out.println("Returning The Lord of the Rings:");
+        firstLibrary.returnBook("The Lord of the Rings");
+        System.out.println();
+// Print the titles of available from the first library
+        System.out.println("Books available in the first library:");
+        firstLibrary.printAvailableBooks();
     }
 }
