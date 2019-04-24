@@ -1,8 +1,8 @@
 package edu.osucascades.mageede;
 
 public class Book {
-    private String title;
-    private boolean borrowed;
+    public String title;
+    public boolean borrowed;
 
     // Creates a new Book
     Book(String title) {
@@ -16,22 +16,18 @@ public class Book {
     }
 
     // Marks the book as not rented
-    private void returned() {
+    public void returned() {
         this.borrowed = false;
     }
 
     // Returns true if the book is rented, false otherwise
-    private boolean isBorrowed() {
+    public boolean isBorrowed() {
         return borrowed;
     }
 
     // Returns the title of the book
-    private String getTitle() {
+    public String getTitle() {
         return title;
-    }
-
-    private void rented() {
-        this.borrowed = true;
     }
 
     public static void main(String[] arguments) {
@@ -39,7 +35,7 @@ public class Book {
         Book example = new Book("The Da Vinci Code");
         System.out.println("Title (should be The Da Vinci Code): " + example.getTitle());
         System.out.println("Borrowed? (should be false): " + example.isBorrowed());
-        example.rented();
+        example.borrowed();
         System.out.println("Borrowed? (should be true): " + example.isBorrowed());
         example.returned();
         System.out.println("Borrowed? (should be false): " + example.isBorrowed());

@@ -1,15 +1,13 @@
 package edu.osucascades.mageede;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Library {
     private String address;
-    private List<Book> books;
+    private ArrayList<Book> books = new ArrayList<>();
 
     private Library(String address) {
         this.address = address;
-        books = new ArrayList<>();
     }
 
     private static void printOpeningHours() {
@@ -25,23 +23,42 @@ public class Library {
     }
 
     private void borrowBook(String bookName) {
-
-        for (int i = 0; i <= books.size(); i++) {
-            System.out.println(books.indexOf(i));
-            if (books.contains(bookName)) {
-                System.out.println("You successfully borrowed " + bookName);
-            } else {
-                System.out.println("Sorry, this book is already borrowed.");
+        int catalogChecker = 0;
+        for (Book book : books) {
+            if (book.getTitle().equals(bookName)) {
+                if (book.isBorrowed()) {
+                    catalogChecker++;
+                    System.out.println("Sorry, this book is already borrowed.");
+                } else {
+                    book.borrowed();
+                    System.out.println("You successfully borrowed " + bookName);
+                }
+            }
+            if (catalogChecker > 0) {
+                System.out.println("Sorry, this book is not in our catalog.");
             }
         }
     }
 
     private void returnBook(String bookName) {
-
+        for (Book book : books) {
+            if (book.getTitle().equals(bookName)) {
+                book.returned();
+                System.out.println("You successfully returned " + bookName);
+            }
+        }
     }
 
     private void printAvailableBooks() {
-
+        if (!books.isEmpty()) {
+            for (Book book : books) {
+                if (!book.isBorrowed()) {
+                    System.out.println(book.getTitle());
+                }
+            }
+        } else {
+            System.out.println("No books in catalog.");
+        }
     }
 
     public static void main(String[] args) {
